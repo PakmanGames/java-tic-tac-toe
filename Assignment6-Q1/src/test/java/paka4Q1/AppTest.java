@@ -1,4 +1,4 @@
-package tictactoe;
+package paka4Q1;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
