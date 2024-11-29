@@ -37,4 +37,6 @@ public class Board {
     // TODO loop through to check if winner
 
     // TODO check if board is full
+
+    // TODO place symbol on board
 }

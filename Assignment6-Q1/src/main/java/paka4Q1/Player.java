@@ -10,4 +10,6 @@ public class Player {
     public String getSymbol() {
         return this.symbol;
     }
+
+    // TODO player choose spot pass board as param
 }
