@@ -10,7 +10,7 @@ public class Game {
     private Scanner input = new Scanner(System.in);
     private String gameMode;
 
-    public String getGameMode() {
+    private String getGameMode() {
         return this.gameMode;
     }
 
@@ -21,6 +21,7 @@ public class Game {
         System.out.println("The first player to get 3 of their symbols in a row wins!");
         System.out.println("The row can be horizontal, vertical, or diagonal.");
         System.out.println("Let's get started!");
+        System.out.println();
     }
 
     private void setupGame() {
@@ -42,9 +43,23 @@ public class Game {
     }
 
     public void startGame() {
-        printRules();
-        setupGame();
-        setupBoard();
+        do {
+            printRules();
+            setupGame();
+            setupBoard();
+            // TODO game loop
+
+            String playAgain;
+            do {
+                System.out.print("Play again? (y/n): ");
+                playAgain = input.nextLine();
+            } while (!playAgain.equalsIgnoreCase("y") && !playAgain.equalsIgnoreCase("n"));
+            if (!playAgain.equalsIgnoreCase("y")) {
+                break;
+            } else {
+                System.out.println();
+            }
+        } while (true);
         // TODO game loop
     }
 
