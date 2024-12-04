@@ -7,5 +7,8 @@ public class App {
         Board board = new Board();
         board.setEmptyBoard();
         board.displayBoard();
+
+        Game game = new Game();
+        game.startGame();
     }
 }

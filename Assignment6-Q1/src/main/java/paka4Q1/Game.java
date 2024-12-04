@@ -10,20 +10,42 @@ public class Game {
     private Scanner input = new Scanner(System.in);
     private String gameMode;
 
-    // TODO change constructor
-    public Game() {
-        this.player1 = new Player("X");
-        this.player2 = new Player("O");
+    public String getGameMode() {
+        return this.gameMode;
+    }
+
+    private void printRules() {
+        System.out.println("Welcome to Tic Tac Toe!");
+        System.out.println("The board is a 3x3 grid.");
+        System.out.println("Players take turns placing their symbol on the board.");
+        System.out.println("The first player to get 3 of their symbols in a row wins!");
+        System.out.println("The row can be horizontal, vertical, or diagonal.");
+        System.out.println("Let's get started!");
+    }
+
+    private void setupGame() {
+        this.gameMode = chooseGameMode();
+        System.out.println("Game mode: " + this.getGameMode()); // FOR TESTING
+        if (this.getGameMode().equals("PvP")) {
+            this.player1 = new Player("X");
+            this.player2 = new Player("O");
+        } else if (this.getGameMode().equals("PvC")) {
+            // TODO
+        } else if (this.getGameMode().equals("CvC")) {
+            // TODO
+        }
+    }
+
+    private void setupBoard() {
         this.board = new Board();
         this.board.setEmptyBoard();
+    }
 
-        // TODO print welcome and rules
-
-        // TODO pick game mode
-        this.gameMode = chooseGameMode();
-        System.out.println("Game mode: " + this.gameMode); // FOR TESTING
-
-        // TODO PLAYER SETUP BASED ON GAMEMODE
+    public void startGame() {
+        printRules();
+        setupGame();
+        setupBoard();
+        // TODO game loop
     }
 
     // TODO game loop
