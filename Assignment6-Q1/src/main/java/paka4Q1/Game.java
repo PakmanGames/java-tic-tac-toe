@@ -60,10 +60,21 @@ public class Game {
                 System.out.println();
             }
         } while (true);
-        // TODO game loop
     }
 
     // TODO game loop
+    private void gameLoop() {
+        while (!this.board.isBoardFull()) { // while not win and board not full
+            // player1 choose spot
+            // check if win break if win
+            // player2 choose spot
+            // check if win break if win
+        }
+
+        if (this.board.isBoardFull()) {
+            System.out.println("It's a tie!");
+        }
+    }
 
     // TODO check board for winner / game over
     // check is full or has winner
