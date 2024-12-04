@@ -64,7 +64,7 @@ public class Game {
 
     // TODO game loop
     private void gameLoop() {
-        while (!this.board.isBoardFull()) { // while not win and board not full
+        while (!this.board.isBoardFull() && !this.board.hasWinner()) { // while not win and board not full
             // player1 choose spot
             // check if win break if win
             // player2 choose spot
