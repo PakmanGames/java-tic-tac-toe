@@ -48,6 +48,7 @@ public class Game {
             setupGame();
             setupBoard();
             // TODO game loop
+            gameLoop();
 
             String playAgain;
             do {
@@ -66,6 +67,7 @@ public class Game {
     private void gameLoop() {
         while (!this.board.isBoardFull() && !this.board.hasWinner()) { // while not win and board not full
             // player1 choose spot
+            board.placeSymbol(player1.chooseSpot(board), player1.getSymbol());
             // check if win break if win
             // player2 choose spot
             // check if win break if win
