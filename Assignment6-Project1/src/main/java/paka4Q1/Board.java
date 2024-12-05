@@ -3,8 +3,8 @@ package paka4Q1;
 public class Board {
     private String[][] board;
 
-    public Board() {
-        this.board = new String[3][3];
+    public Board(int size) {
+        this.board = new String[size][size];
     }
 
     public String[][] getBoard() {

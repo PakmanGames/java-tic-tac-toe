@@ -38,7 +38,7 @@ public class Game {
     }
 
     private void setupBoard() {
-        this.board = new Board();
+        this.board = new Board(3);
         this.board.setEmptyBoard();
     }
 
@@ -47,7 +47,6 @@ public class Game {
             printRules();
             setupGame();
             setupBoard();
-            // TODO game loop
             gameLoop();
 
             String playAgain;
