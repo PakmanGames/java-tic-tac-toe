@@ -67,19 +67,29 @@ public class Game {
         while (!this.board.isBoardFull() && !this.board.hasWinner()) {
             board.placeSymbol(player1.chooseSpot(board), player1.getSymbol());
             if (this.board.hasWinner()) {
+                board.displayBoard();
                 System.out.println("Player " + player1.getSymbol() + " wins!");
+                break;
+            }
+
+            if (this.board.isBoardFull()) {
+                board.displayBoard();
+                System.out.println("It's a tie!");
                 break;
             }
 
             board.placeSymbol(player2.chooseSpot(board), player2.getSymbol());
             if (this.board.hasWinner()) {
+                board.displayBoard();
                 System.out.println("Player " + player2.getSymbol() + " wins!");
                 break;
             }
-        }
 
-        if (this.board.isBoardFull()) {
-            System.out.println("It's a tie!");
+            if (this.board.isBoardFull()) {
+                board.displayBoard();
+                System.out.println("It's a tie!");
+                break;
+            }
         }
     }
 

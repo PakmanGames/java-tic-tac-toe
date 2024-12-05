@@ -26,8 +26,8 @@ public class Player {
                 if (coordinates.length != 2) {
                     throw new IllegalArgumentException("Invalid input. Please enter two integers separated by a comma.");
                 }
-                location[0] = Integer.parseInt(coordinates[0].trim());
-                location[1] = Integer.parseInt(coordinates[1].trim());
+                location[0] = Integer.parseInt(coordinates[0].trim()) - 1;
+                location[1] = Integer.parseInt(coordinates[1].trim()) - 1;
                 if (location[0] < 0 || location[0] >= board.getBoardSize() || location[1] < 0 || location[1] >= board.getBoardSize()) {
                     throw new IllegalArgumentException("Coordinates out of bounds. Please try again.");
                 }
