@@ -37,18 +37,34 @@ public class Board {
     }
 
     public void displayBoard() {
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                System.out.print(" " + this.getBoard()[i][j]);
-                if (j < this.getBoardSize() - 1) {
-                    System.out.print(" |");
-                }
-            }
-            System.out.println();
-            if (i < this.getBoardSize() - 1) {
-                System.out.println("---+---+---");
+        System.out.print("   ");
+        for (int i = 1; i <= this.getBoardSize(); i++) {
+            System.out.print(" " + i + " ");
+            if (i < this.getBoardSize()) {
+                System.out.print("|");
             }
         }
+        System.out.println();
+
+        printLine(this.getBoardSize());
+
+        for (int i = 0; i < this.getBoardSize(); i++) {
+            System.out.print((i + 1) + " | ");
+            for (int j = 0; j < this.getBoardSize(); j++) {
+                System.out.print(this.getBoard()[i][j]);
+                System.out.print(" | ");
+            }
+            System.out.println();
+            printLine(this.getBoardSize());
+        }
+    }
+
+    private static void printLine(int size) {
+        System.out.print("--+");
+        for (int i = 0; i < size; i++) {
+            System.out.print("---+");
+        }
+        System.out.println();
     }
 
     public boolean hasWinner() {
@@ -107,13 +123,10 @@ public class Board {
         return false;
     }
 
-    // TODO check if board is full
     public boolean isBoardFull() {
         for (int i = 0; i < this.getBoardSize(); i++) {
             for (int j = 0; j < this.getBoardSize(); j++) {
-                if (this.getBoard()[i][j].equals("X") || this.getBoard()[i][j].equals("O")) {
-                    continue;
-                } else {
+                if (this.getBoard()[i][j].equals(" ")) {
                     return false;
                 }
             }
