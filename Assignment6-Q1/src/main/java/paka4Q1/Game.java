@@ -63,23 +63,25 @@ public class Game {
         } while (true);
     }
 
-    // TODO game loop
     private void gameLoop() {
-        while (!this.board.isBoardFull() && !this.board.hasWinner()) { // while not win and board not full
-            // player1 choose spot
+        while (!this.board.isBoardFull() && !this.board.hasWinner()) {
             board.placeSymbol(player1.chooseSpot(board), player1.getSymbol());
-            // check if win break if win
-            // player2 choose spot
-            // check if win break if win
+            if (this.board.hasWinner()) {
+                System.out.println("Player " + player1.getSymbol() + " wins!");
+                break;
+            }
+
+            board.placeSymbol(player2.chooseSpot(board), player2.getSymbol());
+            if (this.board.hasWinner()) {
+                System.out.println("Player " + player2.getSymbol() + " wins!");
+                break;
+            }
         }
 
         if (this.board.isBoardFull()) {
             System.out.println("It's a tie!");
         }
     }
-
-    // TODO check board for winner / game over
-    // check is full or has winner
 
     private String chooseGameMode() {
         do {

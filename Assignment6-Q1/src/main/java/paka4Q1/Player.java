@@ -34,11 +34,14 @@ public class Player {
                 if (!board.isSpotAvailable(location)) {
                     throw new IllegalArgumentException("Spot is not available. Please choose another spot.");
                 }
+                System.out.println();
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter valid integers.");
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
         return location;
