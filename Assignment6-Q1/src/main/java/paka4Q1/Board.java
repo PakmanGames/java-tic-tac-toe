@@ -18,22 +18,22 @@ public class Board {
     public void setEmptyBoard() {
         for (int i = 0; i < this.getBoardSize(); i++) {
             for (int j = 0; j < this.getBoardSize(); j++) {
-                this.getBoard()[i][j] = Integer.toString(this.getBoardSize()*i + j + 1);
+                this.getBoard()[i][j] = " ";
             }
         }
     }
 
     // FOR TESTING METHOD
     public void setBoard() {
-        this.placeSymbol("1", "X");
-        this.placeSymbol("2", "O");
-        this.placeSymbol("3", "X");
-        this.placeSymbol("4", "O");
-        this.placeSymbol("5", "X");
-        this.placeSymbol("6", "O");
-        this.placeSymbol("7", "X");
-        this.placeSymbol("8", "O");
-        this.placeSymbol("9", "X");
+        this.placeSymbol(new int[]{0, 0}, "X");
+        this.placeSymbol(new int[]{0, 1}, "O");
+        this.placeSymbol(new int[]{0, 2}, "X");
+        this.placeSymbol(new int[]{1, 0}, "O");
+        this.placeSymbol(new int[]{1, 1}, "X");
+        this.placeSymbol(new int[]{1, 2}, "O");
+        this.placeSymbol(new int[]{2, 0}, "X");
+        this.placeSymbol(new int[]{2, 1}, "O");
+        this.placeSymbol(new int[]{2, 2}, "X");
     }
 
     public void displayBoard() {
@@ -121,25 +121,11 @@ public class Board {
         return true;
     }
 
-    public void placeSymbol(String location, String symbol) {
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                if (this.getBoard()[i][j].equals(location)) {
-                    this.getBoard()[i][j] = symbol;
-                    return;
-                }
-            }
-        }
+    public void placeSymbol(int[] location, String symbol) {
+        this.getBoard()[location[0]][location[1]] = symbol;
     }
 
-    public boolean isSpotAvailable(String location) {
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                if (this.getBoard()[i][j].equals(location)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public boolean isSpotAvailable(int[] location) {
+        return this.getBoard()[location[0]][location[1]].equals(" ");
     }
 }
