@@ -28,12 +28,14 @@ public class Game {
         this.gameMode = chooseGameMode();
         System.out.println("Game mode: " + this.getGameMode()); // FOR TESTING
         if (this.getGameMode().equals("PvP")) {
-            this.player1 = new Player("X");
-            this.player2 = new Player("O");
+            this.player1 = new HumanPlayer("X");
+            this.player2 = new HumanPlayer("O");
         } else if (this.getGameMode().equals("PvC")) {
-            // TODO
+            this.player1 = new HumanPlayer("X");
+            this.player2 = new ComputerPlayer("O");
         } else if (this.getGameMode().equals("CvC")) {
-            // TODO
+            this.player1 = new ComputerPlayer("X");
+            this.player2 = new ComputerPlayer("O");
         }
     }
 
