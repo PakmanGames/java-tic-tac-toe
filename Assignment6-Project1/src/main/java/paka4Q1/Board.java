@@ -16,31 +16,19 @@ public class Board {
     }
 
     public void setEmptyBoard() {
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                this.getBoard()[i][j] = " ";
+        for (int row = 0; row < this.getBoardSize(); row++) {
+            for (int column = 0; column < this.getBoardSize(); column++) {
+                this.getBoard()[row][column] = " ";
             }
         }
     }
 
-    // FOR TESTING METHOD
-    public void setBoard() {
-        this.placeSymbol(new int[]{0, 0}, "X");
-        this.placeSymbol(new int[]{0, 1}, "O");
-        this.placeSymbol(new int[]{0, 2}, "X");
-        this.placeSymbol(new int[]{1, 0}, "O");
-        this.placeSymbol(new int[]{1, 1}, "X");
-        this.placeSymbol(new int[]{1, 2}, "O");
-        this.placeSymbol(new int[]{2, 0}, "X");
-        this.placeSymbol(new int[]{2, 1}, "O");
-        this.placeSymbol(new int[]{2, 2}, "X");
-    }
-
     public void displayBoard() {
+        // Print column numbers
         System.out.print("   ");
-        for (int i = 1; i <= this.getBoardSize(); i++) {
-            System.out.print(" " + i + " ");
-            if (i < this.getBoardSize()) {
+        for (int row = 1; row <= this.getBoardSize(); row++) {
+            System.out.print(" " + row + " ");
+            if (row < this.getBoardSize()) {
                 System.out.print("|");
             }
         }
@@ -48,10 +36,11 @@ public class Board {
 
         printLine(this.getBoardSize());
 
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            System.out.print((i + 1) + " | ");
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                System.out.print(this.getBoard()[i][j]);
+        // Print rows of board
+        for (int row = 0; row < this.getBoardSize(); row++) {
+            System.out.print((row + 1) + " | ");
+            for (int column = 0; column < this.getBoardSize(); column++) {
+                System.out.print(this.getBoard()[row][column]);
                 System.out.print(" | ");
             }
             System.out.println();
@@ -59,74 +48,91 @@ public class Board {
         }
     }
 
+    // Helper method to print a line of the board
     private static void printLine(int size) {
         System.out.print("--+");
-        for (int i = 0; i < size; i++) {
+        for (int column = 0; column < size; column++) {
             System.out.print("---+");
         }
         System.out.println();
     }
 
+    // Algorithm to check if there is a winner
     public boolean hasWinner() {
         // Check rows
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            String symbol = this.getBoard()[i][0];
+        boolean winCheck = false;
+        for (int row = 0; row < this.getBoardSize(); row++) {
+            winCheck = true;
+            String symbol = this.getBoard()[row][0];
             if (symbol.equals(" ")) {
+                winCheck = false;
                 continue;
             }
-            for (int j = 1; j < this.getBoardSize(); j++) {
-                if (!this.getBoard()[i][j].equals(symbol)) {
+            for (int column = 1; column < this.getBoardSize(); column++) {
+                if (!this.getBoard()[row][column].equals(symbol)) {
+                    winCheck = false;
                     break;
                 }
-                if (j == this.getBoardSize() - 1) {
-                    return true;
-                }
+            }
+            if (winCheck) {
+                return winCheck;
             }
         }
 
         // Check columns
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            String symbol = this.getBoard()[0][i];
+        for (int column = 0; column < this.getBoardSize(); column++) {
+            winCheck = true;
+            String symbol = this.getBoard()[0][column];
             if (symbol.equals(" ")) {
+                winCheck = false;
                 continue;
             }
-            for (int j = 1; j < this.getBoardSize(); j++) {
-                if (!this.getBoard()[j][i].equals(symbol)) {
+            for (int row = 1; row < this.getBoardSize(); row++) {
+                if (!this.getBoard()[row][column].equals(symbol)) {
+                    winCheck = false;
                     break;
                 }
-                if (j == this.getBoardSize() - 1) {
-                    return true;
-                }
+            }
+            if (winCheck) {
+                return winCheck;
             }
         }
 
         // Check diagonals
         String symbol = this.getBoard()[0][0];
         if (!symbol.equals(" ")) {
-            for (int i = 1; i < this.getBoardSize(); i++) {
-                if (!this.getBoard()[i][i].equals(symbol)) {
+            winCheck = true;
+            for (int diagonal = 1; diagonal < this.getBoardSize(); diagonal++) {
+                if (!this.getBoard()[diagonal][diagonal].equals(symbol)) {
+                    winCheck = false;
                     break;
-                }
-                if (i == this.getBoardSize() - 1) {
-                    return true;
                 }
             }
-            for (int i = 1; i < this.getBoardSize(); i++) {
-                if (!this.getBoard()[i][this.getBoardSize() - 1 - i].equals(symbol)) {
+            if (winCheck) {
+                return winCheck;
+            }
+        }
+        symbol = this.getBoard()[0][this.getBoardSize() - 1];
+        if (!symbol.equals(" ")) {
+            winCheck = true;
+            for (int diagonal = 1; diagonal < this.getBoardSize(); diagonal++) {
+                if (!this.getBoard()[diagonal][this.getBoardSize() - 1 - diagonal].equals(symbol)) {
+                    winCheck = false;
                     break;
                 }
-                if (i == this.getBoardSize() - 1) {
-                    return true;
-                }
+            }
+            if (winCheck) {
+                return winCheck;
             }
         }
         return false;
     }
 
+    // Algorithm to check if the board is full
     public boolean isBoardFull() {
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                if (this.getBoard()[i][j].equals(" ")) {
+        for (int row = 0; row < this.getBoardSize(); row++) {
+            for (int column = 0; column < this.getBoardSize(); column++) {
+                if (this.getBoard()[row][column].equals(" ")) {
                     return false;
                 }
             }

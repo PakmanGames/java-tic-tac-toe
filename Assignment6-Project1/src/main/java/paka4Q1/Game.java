@@ -14,6 +14,7 @@ public class Game {
         return this.gameMode;
     }
 
+    // Print the rules of the game
     private void printRules() {
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.println("The board is a 3x3 grid.");
@@ -24,9 +25,10 @@ public class Game {
         System.out.println();
     }
 
+    // Setup the game mode of the game
     private void setupGame() {
         this.gameMode = chooseGameMode();
-        System.out.println("Game mode: " + this.getGameMode()); // FOR TESTING
+        System.out.println("Game mode: " + this.getGameMode());
         if (this.getGameMode().equals("PvP")) {
             this.player1 = new HumanPlayer("X");
             this.player2 = new HumanPlayer("O");
@@ -39,18 +41,22 @@ public class Game {
         }
     }
 
+    // Setup the board of the game
     private void setupBoard() {
         this.board = new Board(3);
         this.board.setEmptyBoard();
     }
 
+    // Start the game
     public void startGame() {
         do {
+            // Basic game setup
             printRules();
             setupGame();
             setupBoard();
             gameLoop();
 
+            // Ask if the player wants to play again
             String playAgain;
             do {
                 System.out.print("Play again? (y/n): ");
@@ -64,36 +70,37 @@ public class Game {
         } while (true);
     }
 
+    // Main game loop
     private void gameLoop() {
         while (!this.board.isBoardFull() && !this.board.hasWinner()) {
-            board.placeSymbol(player1.chooseSpot(board), player1.getSymbol());
-            if (this.board.hasWinner()) {
-                board.displayBoard();
-                System.out.println("Player " + player1.getSymbol() + " wins!");
-                break;
+            if (takeTurn(player1)) {
+                return;
             }
-
-            if (this.board.isBoardFull()) {
-                board.displayBoard();
-                System.out.println("It's a tie!");
-                break;
-            }
-
-            board.placeSymbol(player2.chooseSpot(board), player2.getSymbol());
-            if (this.board.hasWinner()) {
-                board.displayBoard();
-                System.out.println("Player " + player2.getSymbol() + " wins!");
-                break;
-            }
-
-            if (this.board.isBoardFull()) {
-                board.displayBoard();
-                System.out.println("It's a tie!");
-                break;
+            if (takeTurn(player2)) {
+                return;
             }
         }
     }
 
+    // Take a turn for a player
+    private boolean takeTurn(Player player) {
+        board.placeSymbol(player.chooseSpot(board), player.getSymbol());
+        if (this.board.hasWinner()) {
+            board.displayBoard();
+            System.out.println("Player " + player.getSymbol() + " wins!");
+            return true;
+        }
+
+        if (this.board.isBoardFull()) {
+            board.displayBoard();
+            System.out.println("It's a tie!");
+            return true;
+        }
+
+        return false;
+    }
+
+    // Choose the game mode
     private String chooseGameMode() {
         do {
             System.out.println("Choose game mode: ");
