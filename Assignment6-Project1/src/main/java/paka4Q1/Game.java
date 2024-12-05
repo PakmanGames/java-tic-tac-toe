@@ -42,9 +42,17 @@ public class Game {
     }
 
     // Setup the board of the game
-    private void setupBoard() {
+    public void setupBoard() {
         this.board = new Board(3);
         this.board.setEmptyBoard();
+    }
+
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     // Start the game

@@ -11,6 +11,10 @@ public class Board {
         return this.board;
     }
 
+    public void setBoard(String[][] board) {
+        this.board = board;
+    }
+
     public int getBoardSize() {
         return this.getBoard().length;
     }
